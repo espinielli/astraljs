@@ -3,7 +3,7 @@
 // division-by-zero-test.js
 
 var vows = require('vows'),
-  assert = require('assert'),
+  assert = require('./assert'),
       fs = require('fs'),
       aa = eval(fs.readFileSync('astral.js')+''),
        τ = 2 * Math.PI,
@@ -149,19 +149,19 @@ suiteBasics.addBatch({
       fx = function(x) {return x;},
       y  = 1.0,
       x0 = 1.0;
-      assert(topic(0.0, 3.1, p, e) - x0 <= 1e-5);
+      assert.inDelta(topic(0.0, 3.1, p, e), x0, 1e-5);
 
       // new function y = f(x), f(x) = x**2 - 4*x + 4, y0 = 0.0; solution x0=2.0
       fx = function(x) { return x*x -4 * x + 4.0;};
       y = 0.0;
       x0 = 2.0;
-      assert(topic(1.5, 2.5, p, e) - x0 <= 1e-5);
+      assert.inDelta(topic(1.5, 2.5, p, e), x0, 1e-5);
     }
   },
   'invert angular': {
     topic: function() { return aa.invert_angular;},
     'invert_angular': function(topic) {
-      assert(topic(Math.tan, 1.0, 0, 60*radians) - 45*radians <= 1e-5);
+      assert.inDelta(topic(Math.tan, 1.0, 0, 60*radians), 45*radians, 1e-5);
     }
   },
   'zip': {
@@ -202,35 +202,35 @@ suiteLunar.addBatch({
     topic: function() {return aa.mean_lunar_longitude;},
     'mean_lunar_longitude': function (topic) {
       // from Example 47.a in Jan Meeus "Astronomical Algorithms" pag 342
-      assert.inDelta(topic(-0.077221081451) - 134.290182, 1e-6);
+      assert.inDelta(topic(-0.077221081451), 134.290182, 1e-6);
     }
   },
   'lunar elongation': {
     topic: function() {return aa.lunar_elongation;},
     'lunar_elongation': function (topic) {
       // from Example 47.a in Jan Meeus "Astronomical Algorithms" pag 342
-      assert.inDelta(topic(-0.077221081451) - 113.842304, 1e-6);
+      assert.inDelta(topic(-0.077221081451), 113.842304, 1e-6);
     }
   },
   'solar anomaly': {
     topic: function() {return aa.solar_anomaly;},
     'solar_anomaly': function (topic) {
       // from Example 47.a in Jan Meeus "Astronomical Algorithms" pag 342
-      assert.inDelta(topic(-0.077221081451) - 97.643514, 1e-6);
+      assert.inDelta(topic(-0.077221081451), 97.643514, 1e-6);
     }
   },
   'lunar anomaly': {
     topic: function() {return aa.lunar_anomaly;},
     'lunar_anomaly': function (topic) {
       // from Example 47.a in Jan Meeus "Astronomical Algorithms" pag 342
-      assert.inDelta(topic(-0.077221081451) - 5.150833, 1e-6);
+      assert.inDelta(topic(-0.077221081451), 5.150833, 1e-6);
     }
   },
   'moon node': {
     topic: function() {return aa.moon_node;},
     'moon_node': function (topic) {
       // from Example 47.a in Jan Meeus "Astronomical Algorithms" pag 342
-      assert.inDelta(topic(-0.077221081451) - 219.889721, 1e-6);
+      assert.inDelta(topic(-0.077221081451), 219.889721, 1e-6);
     }
   },
   'nutation': {
@@ -239,7 +239,7 @@ suiteLunar.addBatch({
       // from Jan Meeus "Astronomical Algorithms", pag 343
       var TD  = aa.fixed_from_gregorian(aa.gregorian_date(1992, 4, 12)),
       tee = aa.universal_from_dynamical(TD);
-      assert.inDelta(topic(tee) - 0.004610, 1e-3);
+      assert.inDelta(topic(tee), 0.004610, 1e-3);
     }
   },
   'lunar longitude': {
@@ -278,7 +278,16 @@ suiteLunar.addBatch({
        [728714,51.662468],
        [744313,26.691791],
        [764652,175.500184]].forEach(function(elem, idx, a){
-           assert.inDelta(topic(elem[0]) - elem[1], 1e-6);
+           assert.inDelta(topic(elem[0]), elem[1], 1e-6);
+       });
+    }
+  },
+  'lunar latitude': {
+    topic: function() {return aa.lunar_latitude;},
+    'lunar_latitude': function (topic) {
+      [[2448396.04167,1.4074932]
+       ].forEach(function(elem, idx, a){
+           assert.inDelta(topic(elem[0]), elem[1], 1e-6);
        });
     }
   }
@@ -290,23 +299,37 @@ suiteLunar.export(module);
 
 
 suiteCalendar.addBatch({
+  'time conversion': {
+    topic: function() {return aa.universal_from_dynamical;},
+    'universal_from_dynamical': function (topic) {
+      // from Meeus Example 10.a, pag 78
+      var date = aa.gregorian_date(1977, 2, 18),
+        time = aa.time_from_clock([3, 37, 40]),
+      td   = aa.fixed_from_gregorian(date) + time,
+      utc  = aa.universal_from_dynamical(td),
+      clk  = aa.clock_from_moment(utc);
+      assert.equal(clk[0], 3);
+      assert.equal(clk[1], 36);
+      assert.equal(aa.iround(clk[2]), 52);
+    }
+  },
   'Gregorian leap year': {
     topic: function() {return aa.is_gregorian_leap_year;},
     'is_gregorian_leap_year': function (topic) {
-      assert(topic(2000));
-      assert(!topic(1900));
+      assert.ok(topic(2000));
+      assert.ok(!topic(1900));
     }
   },
   'Gregorian conversion': {
     topic: function() {return aa.gregorian_from_fixed;},
     'gregorian_from_fixed': function (topic) {
-      assert(topic(710347), [1945, 11, 12]);
+      assert.equal(topic(710347), [1945, 11, 12]);
     }
   },
   'Gregorian conversion': {
     topic: function() {return aa.fixed_from_gregorian;},
     'fixed_from_gregorian': function (topic) {
-      assert(topic([1945, 11, 12]), 710347);
+      assert.equal(topic([1945, 11, 12]), 710347);
     }
   }
 

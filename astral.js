@@ -57,46 +57,92 @@
      return [hour, minute, second];
    }
 
+   //Return the hour of clock time 'clock'.
+   function hour(clock) {
+     return clock[0];
+   }
+
+
+   // Return the minutes of clock time 'clock'.
+   function minute(clock) {
+     return clock[1];
+   }
+
+   // Return the seconds of clock time 'clock'.
+   function seconds(clock) {
+     return clock[2];
+   }
+
+
+   // Return time of day from clock time 'hms'.
+   function time_from_clock(hms){
+     var h = hour(hms),
+         m = minute(hms),
+         s = seconds(hms);
+     return(1/24 * (h + ((m + (s / 60)) / 60)));
+   }
+   astral. time_from_clock = time_from_clock;
 
    // Return fixed date from moment 'tee'.
    function fixed_from_moment(tee){
      return ifloor(tee);
    }
+   astral.fixed_from_moment = fixed_from_moment;
 
    // Return time from moment 'tee'.
    function time_from_moment(tee) {
      return mod(tee, 1);
    }
+   astral.time_from_moment = time_from_moment;
 
+   // Return clock time hour:minute:second from moment 'tee'.
+   function clock_from_moment(tee) {
+     var time = time_from_moment(tee),
+         hour = ifloor(time * 24),
+         minute = ifloor(mod(time * 24 * 60, 60)),
+         second = mod(time * 24 * 60 * 60, 60);
+     return time_of_day(hour, minute, second);
+   }
+   astral.clock_from_moment = clock_from_moment;
+
+   // Return the number of days given x hours.
+   function days_from_hours(x) {
+     return x / 24;
+   }
 
   // days (and fractions) of Julian 2000 at 12 UTC
   // (since EPOCH = January 1, 1970, 00:00:00 UTC)
   var JD_EPOCH = rd(-1721424.5),
-      J2000 = Date.UTC(2000, 0, 1, 12) / 1000 / 86400,
           τ = 2 * Math.PI,
     degrees = 360 / τ,
     radians = τ / 360;
+
+   astral.JD_EPOCH = JD_EPOCH;
 
   // Return the moment corresponding to the Julian day number 'jd'.
   function moment_from_jd(jd) {
     return jd + JD_EPOCH;
   }
+  astral.moment_from_jd = moment_from_jd;
 
   // Return the Julian day number corresponding to moment 'tee'.
   function jd_from_moment(tee) {
     return tee - JD_EPOCH;
   }
+  astral.jd_from_moment = jd_from_moment;
 
   // Return the fixed date corresponding to Julian day number 'jd'.
   function fixed_from_jd(jd) {
     return ifloor(moment_from_jd(jd));
   }
+  astral.fixed_from_jd = fixed_from_jd;
 
 
   // Return the Julian day number corresponding to fixed date 'rd'.
   function jd_from_fixed(date) {
     return jd_from_moment(date);
   }
+  astral.jd_from_fixed = jd_from_fixed;
 
   // Return a Gregorian date data structure.
   function gregorian_date(year, month, day){
@@ -159,11 +205,13 @@
    function gregorian_new_year(g_year) {
      return fixed_from_gregorian(gregorian_date(g_year, JANUARY, 1));
    }
+   astral.gregorian_new_year = gregorian_new_year;
 
    // Return the fixed date of December 31 in Gregorian year 'g_year'.
    function gregorian_year_end(g_year) {
      return fixed_from_gregorian(gregorian_date(g_year, DECEMBER, 31));
    }
+   astral.gregorian_year_end = gregorian_year_end;
 
    // Return the Gregorian date corresponding to fixed date 'date'.
    function gregorian_from_fixed(date) {
@@ -184,6 +232,9 @@
      return fixed_from_gregorian(g_date2) - fixed_from_gregorian(g_date1);
    }
 
+
+   var J2000 = days_from_hours(12) + gregorian_new_year(2000);
+   astral.J2000 = J2000;
 
   // Return Julian centuries since 2000 at moment 'tee' (in days and
   // fractions since EPOCH).
@@ -212,26 +263,26 @@
     c = gregorian_date_difference(gregorian_date(1900, JANUARY, 1),
                                   gregorian_date(year, JULY, 1)) / 36525;
 
-    if (1988 <= year && year <= 2019) {
+    if ((1988 <= year) && (year <= 2019)) {
       return (year - 1933) / 86400;
     }
-    else if (1900 <= year && year <= 1987) {
+    else if ((1900 <= year) && (year <= 1987)) {
       return poly(c, [-0.00002, 0.000297, 0.025184,
                       -0.181133, 0.553040, -0.861938,
                       0.677066, -0.212591]);
     }
-    else if (1800 <= year && year <= 1899) {
+    else if ((1800 <= year) && (year <= 1899)) {
       return poly(c, [-0.000009, 0.003844, 0.083563,
                       0.865736, 4.867575, 15.845535,
                       31.332267, 38.291999, 28.316289,
                       11.636204, 2.043794]);
     }
-    else if (1700 <= year && year <= 1799) {
+    else if ((1700 <= year) && (year <= 1799)) {
       return (1 / 86400 *
               poly(year - 1700, [8.118780842, -0.005092142,
                                  0.003336121, -0.0000266484]));
     }
-    else if (1620 <= year && year <= 1699) {
+    else if ((1620 <= year) && (year <= 1699)) {
       return (1 / 86400 *
               poly(year - 1600,
                    [196.58333, -4.0675, 0.0219167]));
@@ -246,6 +297,27 @@
   astral.ephemeris_correction = ephemeris_correction;
 
 
+
+  // Return the angular data structure.
+  function degrees_minutes_seconds(d, m, s) {
+    return [d, m, s];
+  }
+
+  // Return an angle in degrees:minutes:seconds from angle,
+  // 'alpha' in degrees.
+  function angle_from_degrees(alpha) {
+    var d = ifloor(alpha),
+        m = ifloor(60 * mod(alpha, 1)),
+        s = mod(alpha * 60 * 60, 60);
+    return degrees_minutes_seconds(d, m, s);
+  }
+  astral.angle_from_degrees = angle_from_degrees;
+
+  // Return decimal degrees
+  function decimal_degrees(d, m, s) {
+    return d + (m + s /60) / 60;
+  }
+   astral.decimal_degrees = decimal_degrees;
 
    // define sign of number
    Math.signum = function(x) { return x ? x < 0 ? -1 : 1 : 0; };
@@ -539,7 +611,7 @@
                    args_moon_node],
                   function(v, w, x, y, z){
                     return (v *
-                            Math.pow(cap_E, abs(x)) *
+                            Math.pow(cap_E, Math.abs(x)) *
                             sin_degrees((w * cap_D) +
                                         (x * cap_M) +
                                         (y * cap_M_prime) +
