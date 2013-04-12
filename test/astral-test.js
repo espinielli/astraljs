@@ -1,7 +1,7 @@
 // -*-coding: utf-8;-*-
 
 // division-by-zero-test.js
-
+require('bignumber.js');
 var vows = require('vows'),
   assert = require('./assert'),
       fs = require('fs'),
