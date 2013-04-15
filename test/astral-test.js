@@ -1,15 +1,13 @@
-// -*-coding: utf-8;-*-
-
-// division-by-zero-test.js
-require('bignumber.js');
 var vows = require('vows'),
   assert = require('./assert'),
       fs = require('fs'),
       aa = eval(fs.readFileSync('astral.js')+''),
+      BigNumber = require('bignumber.js'),
        τ = 2 * Math.PI,
  degrees = 360 / τ,
  radians = τ / 360;
 
+BigNumber.config({ DECIMAL_PLACES : 16, ROUNDING_MODE : 6 });
 
 
 // Create a Test Suite
@@ -198,11 +196,20 @@ suiteBasics.export(module);
 
 
 suiteLunar.addBatch({
+  'julian centuries': {
+    topic: function() {return aa.julian_centuries;},
+    'julian_centuries': function (topic) {
+      // from Example 47.a in Jan Meeus "Astronomical Algorithms" pag 342
+      assert.inDelta(topic(1234), -19.955821423407599, 1e-6);
+      assert.inDelta(topic(123456789), 3360.1894633885022, 1e-6);
+    }
+  },
   'mean lunar longitude': {
     topic: function() {return aa.mean_lunar_longitude;},
     'mean_lunar_longitude': function (topic) {
       // from Example 47.a in Jan Meeus "Astronomical Algorithms" pag 342
-      assert.inDelta(topic(-0.077221081451), 134.290182, 1e-6);
+      assert.inDelta(topic(1234), 59.727982521057129, 1e-6);
+      assert.inDelta(topic(12345.6789), 190.31678771972656, 1e-6);
     }
   },
   'lunar elongation': {

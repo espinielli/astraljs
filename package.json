@@ -7,6 +7,10 @@
   "homepage"    : "http://espinielli.github.com/astral.js",
   "repository"  : {"type": "git", "url": "http://github.com/espinielli/astral.js"},
   "dependencies": {"bignumber.js": "1.0.1"},
-  "devDependencies": {"vows": "0.7.x"},
-  "scripts"     : {"test": "./node_modules/vows/bin/vows `find . -name \"*-test.js\" \\! -path \"./node_modules/*\"`"}
-}
+  "devDependencies": {
+    "smash": "~0.0.8",
+    "uglify-js": "",
+    "vows": "0.7.x"
+    },
+    "scripts"     : {"test": "./node_modules/vows/bin/vows `find . -name \"*-test.js\" \\! -path \"./node_modules/*\"`"}
+  }
