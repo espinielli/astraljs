@@ -61,9 +61,12 @@ astral.ephemeris_correction = ephemeris_correction;
 // effect of the light-time (-0".70).
 // Adapted from eq. 47.1 in "Astronomical Algorithms" by Jean Meeus,
 // Willmann_Bell, Inc., 2nd ed. with corrections, 2005.
-
 function mean_lunar_longitude(c) {
-  return normalized_degrees(poly(c, [218.3164477, 481267.88123421, -0.0015786, 1 / 538841, -1 / 65194000]));
+  return normalized_degrees(poly(c, [218.3164477,
+                                     481267.88123421,
+                                     -0.0015786,
+                                     1 / 538841,
+                                     -1 / 65194000]));
 }
 astral.mean_lunar_longitude = mean_lunar_longitude;
 
@@ -161,9 +164,8 @@ function lunar_longitude(tee) {
     correction = (1 / 1000000 * sigma([sine_coefficients, args_lunar_elongation,
     args_solar_anomaly, args_lunar_anomaly,
     args_moon_node],
-
     function(v, w, x, y, z) {
-      return (v * Math.pow(cap_E, Math.abs(x)) * sin_degrees((w * cap_D) + (y * cap_M_prime) + (z * cap_F)));
+      return (v * Math.pow(cap_E, Math.abs(x)) * sin_degrees((w * cap_D) + (x * cap_M) + (y * cap_M_prime) + (z * cap_F)));
     })),
     A1 = 119.75 + (c * 131.849),
     venus = 3958 / 1000000 * sin_degrees(A1),
@@ -176,50 +178,254 @@ function lunar_longitude(tee) {
 astral.lunar_longitude = lunar_longitude;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Return the latitude of moon (in degrees) at moment, tee.
 // Adapted from "Astronomical Algorithms" by Jean Meeus,
 // Willmann_Bell, Inc., 1998.
-
 function lunar_latitude(tee) {
   var c = julian_centuries(tee),
-    cap_L_prime = mean_lunar_longitude(c),
-    cap_D = lunar_elongation(c),
-    cap_M = solar_anomaly(c),
-    cap_M_prime = lunar_anomaly(c),
-    cap_F = moon_node(c),
-    cap_E = poly(c, [1, -0.002516, -0.0000074]),
-    args_lunar_elongation = (
-    [0, 0, 0, 2, 2, 2, 2, 0, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0, 4, 0, 0, 0,
-    1, 0, 0, 0, 1, 0, 4, 4, 0, 4, 2, 2, 2, 2, 0, 2, 2, 2, 2, 4, 2, 2,
-    0, 2, 1, 1, 0, 2, 1, 2, 0, 4, 4, 1, 4, 1, 4, 2]),
-    args_solar_anomaly = (
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 1, -1, -1, -1, 1, 0, 1,
-    0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 1,
-    0, -1, -2, 0, 1, 1, 1, 1, 1, 0, -1, 1, 0, -1, 0, 0, 0, -1, -2]),
-    args_lunar_anomaly = (
-    [0, 1, 1, 0, -1, -1, 0, 2, 1, 2, 0, -2, 1, 0, -1, 0, -1, -1, -1,
-    0, 0, -1, 0, 1, 1, 0, 0, 3, 0, -1, 1, -2, 0, 2, 1, -2, 3, 2, -3, -1, 0, 0, 1, 0, 1, 1, 0, 0, -2, -1, 1, -2, 2, -2, -1, 1, 1, -2,
-    0, 0]),
-    args_moon_node = (
-    [1, 1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 3, 1, 1, 1, -1, -1, -1, 1, -1, 1, -3, 1, -3, -1, -1, 1, -1, 1, -1, 1, 1, 1, 1, -1, 3, -1, -1, 1, -1, -1, 1, -1, 1, -1, -1, -1, -1, -1, -1, 1]),
-    sine_coefficients = (
-    [5128122, 280602, 277693, 173237, 55413, 46271, 32573,
-    17198, 9266, 8822, 8216, 4324, 4200, -3359, 2463, 2211,
-    2065, -1870, 1828, -1794, -1749, -1565, -1491, -1475, -1410, -1344, -1335, 1107, 1021, 833, 777, 671, 607,
-    596, 491, -451, 439, 422, 421, -366, -351, 331, 315,
-    302, -283, -229, 223, 223, -220, -220, -185, 181, -177, 176, 166, -164, 132, -119, 115, 107]),
-    beta = ((1 / 1000000) * sigma([sine_coefficients,
-    args_lunar_elongation,
-    args_solar_anomaly,
-    args_lunar_anomaly,
-    args_moon_node],
+      cap_L_prime = mean_lunar_longitude(c),
+      cap_D = lunar_elongation(c),
+      cap_M = solar_anomaly(c),
+      cap_M_prime = lunar_anomaly(c),
+      cap_F = moon_node(c),
+      cap_E = poly(c, [1, -0.002516, -0.0000074]),
+      args_lunar_elongation = [
+        0, 0, 0, 2, 2, 2, 2, 0, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0, 4, 0, 0, 0,
+        1, 0, 0, 0, 1, 0, 4, 4, 0, 4, 2, 2, 2, 2, 0, 2, 2, 2, 2, 4, 2, 2,
+        0, 2, 1, 1, 0, 2, 1, 2, 0, 4, 4, 1, 4, 1, 4, 2],
+      args_solar_anomaly = [
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 1, -1, -1, -1, 1, 0, 1,
+        0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 1,
+        0, -1, -2, 0, 1, 1, 1, 1, 1, 0, -1, 1, 0, -1, 0, 0, 0, -1, -2],
+      args_lunar_anomaly = [
+        0, 1, 1, 0, -1, -1, 0, 2, 1, 2, 0, -2, 1, 0, -1, 0, -1, -1, -1,
+        0, 0, -1, 0, 1, 1, 0, 0, 3, 0, -1, 1, -2, 0, 2, 1, -2, 3, 2, -3,
+        -1, 0, 0, 1, 0, 1, 1, 0, 0, -2, -1, 1, -2, 2, -2, -1, 1, 1, -2,
+        0, 0],
+      args_moon_node = [
+        1, 1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, 1, -1, 1, 1, -1, -1,
+        -1, 1, 3, 1, 1, 1, -1, -1, -1, 1, -1, 1, -3, 1, -3, -1, -1, 1,
+        -1, 1, -1, 1, 1, 1, 1, -1, 3, -1, -1, 1, -1, -1, 1, -1, 1, -1,
+        -1, -1, -1, -1, -1, 1],
+      sine_coefficients = [
+        5128122, 280602, 277693, 173237, 55413, 46271, 32573,
+        17198, 9266, 8822, 8216, 4324, 4200, -3359, 2463, 2211,
+        2065, -1870, 1828, -1794, -1749, -1565, -1491, -1475,
+        -1410, -1344, -1335, 1107, 1021, 833, 777, 671, 607,
+        596, 491, -451, 439, 422, 421, -366, -351, 331, 315,
+        302, -283, -229, 223, 223, -220, -220, -185, 181,
+        -177, 176, 166, -164, 132, -119, 115, 107],
+      beta = ((1/1000000) *
+              sigma([sine_coefficients, 
+                     args_lunar_elongation,
+                     args_solar_anomaly,
+                     args_lunar_anomaly,
+                     args_moon_node],
+                    function(v, w, x, y, z) {
+                      return (v *
+                              Math.pow(cap_E, Math.abs(x)) *
+                              sin_degrees((w * cap_D) +
+                                          (x * cap_M) +
+                                          (y * cap_M_prime) +
+                                          (z * cap_F)));
+                    })),
+      venus = ((175/1000000) *
+                  (sin_degrees(119.75 + c * 131.849 + cap_F) +
+                   sin_degrees(119.75 + c * 131.849 - cap_F))),
+      flat_earth = ((-2235/1000000) * sin_degrees(cap_L_prime) +
+                      (127/1000000) * sin_degrees(cap_L_prime - cap_M_prime) +
+                     (-115/1000000) * sin_degrees(cap_L_prime + cap_M_prime)),
+      extra = ((382/1000000) * sin_degrees(313.45 + c * 481266.484));
 
-    function(v, w, x, y, z) {
-      return (v * Math.pow(cap_E, Math.abs(x)) * sin_degrees((w * cap_D) + (x * cap_M) + (y * cap_M_prime) + (z * cap_F)));
-    })),
-    venus = ((175 / 1000000) * (sin_degrees(119.75 + c * 131.849 + cap_F) + sin_degrees(119.75 + c * 131.849 - cap_F))),
-    flat_earth = ((-2235 / 1000000) * sin_degrees(cap_L_prime) + (127 / 1000000) * sin_degrees(cap_L_prime - cap_M_prime) + (-115 / 1000000) * sin_degrees(cap_L_prime + cap_M_prime)),
-    extra = ((382 / 1000000) * sin_degrees(313.45 + c * 481266.484));
   return beta + venus + flat_earth + extra;
 }
 astral.lunar_latitude = lunar_latitude;
+
+
+
+// Return the distance to moon (in meters) at moment, tee.
+// Adapted from "Astronomical Algorithms" by Jean Meeus,
+// Willmann_Bell, Inc., 2nd ed.
+function lunar_distance(tee) {
+  var c = julian_centuries(tee),
+      cap_D = lunar_elongation(c),
+      cap_M = solar_anomaly(c),
+      cap_M_prime = lunar_anomaly(c),
+      cap_F = moon_node(c),
+      cap_E = poly(c, [1, -0.002516, -0.0000074])
+      args_lunar_elongation = [
+        0, 2, 2, 0, 0, 0, 2, 2, 2, 2, 0, 1, 0, 2, 0, 0, 4, 0, 4, 2, 2, 1,
+        1, 2, 2, 4, 2, 0, 2, 2, 1, 2, 0, 0, 2, 2, 2, 4, 0, 3, 2, 4, 0, 2,
+        2, 2, 4, 0, 4, 1, 2, 0, 1, 3, 4, 2, 0, 1, 2, 2],
+      args_solar_anomaly = [
+        0, 0, 0, 0, 1, 0, 0, -1, 0, -1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1,
+        0, 1, -1, 0, 0, 0, 1, 0, -1, 0, -2, 1, 2, -2, 0, 0, -1, 0, 0, 1,
+        -1, 2, 2, 1, -1, 0, 0, -1, 0, 1, 0, 1, 0, 0, -1, 2, 1, 0, 0],
+      args_lunar_anomaly = [
+        1, -1, 0, 2, 0, 0, -2, -1, 1, 0, -1, 0, 1, 0, 1, 1, -1, 3, -2,
+        -1, 0, -1, 0, 1, 2, 0, -3, -2, -1, -2, 1, 0, 2, 0, -1, 1, 0,
+        -1, 2, -1, 1, -2, -1, -1, -2, 0, 1, 4, 0, -2, 0, 2, 1, -2, -3,
+        2, 1, -1, 3, -1],
+      args_moon_node = [
+        0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, -2, 2, -2, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, -2, 2, 0, 2, 0, 0, 0, 0,
+        0, 0, -2, 0, 0, 0, 0, -2, -2, 0, 0, 0, 0, 0, 0, 0, -2],
+      cosine_coefficients = [
+        -20905355, -3699111, -2955968, -569925, 48888, -3149,
+        246158, -152138, -170733, -204586, -129620, 108743,
+        104755, 10321, 0, 79661, -34782, -23210, -21636, 24208,
+        30824, -8379, -16675, -12831, -10445, -11650, 14403,
+        -7003, 0, 10056, 6322, -9884, 5751, 0, -4950, 4130, 0,
+        -3958, 0, 3258, 2616, -1897, -2117, 2354, 0, 0, -1423,
+        -1117, -1571, -1739, 0, -4421, 0, 0, 0, 0, 1165, 0, 0,
+        8752],
+      correction = sigma ([cosine_coefficients,
+                           args_lunar_elongation,
+                           args_solar_anomaly,
+                           args_lunar_anomaly,
+                           args_moon_node],
+                          function(v, w, x, y, z) {
+                            return (v *
+                                    Math.pow(cap_E, Math.abs(x)) * 
+                                    cos_degrees((w * cap_D) +
+                                                   (x * cap_M) +
+                                                   (y * cap_M_prime) +
+                                                   (z * cap_F)));});
+    return 385000560 + correction;
+}
+astral.lunar_distance = lunar_distance;
+
+
+// Return the geocentric apparent lunar diameter of the moon (in
+// degrees) at moment, tee.  Adapted from 'Astronomical
+// Algorithms' by Jean Meeus, Willmann_Bell, Inc., 2nd ed.
+function lunar_diameter(tee) {
+  return (1792367000/9) / lunar_distance(tee);
+}
+astral.lunar_diameter = lunar_diameter;
+
+
+// Return the moon position (geocentric latitude and longitude [in degrees]
+// and distance [in meters]) at moment, tee.
+// Adapted from "Astronomical Algorithms" by Jean Meeus,
+// Willmann_Bell, Inc., 2nd ed.
+function lunar_position(tee) {
+  return [lunar_latitude(tee), lunar_longitude(tee), lunar_distance(tee)];
+}
+astral.lunar_position = lunar_position;
+
+
+var MEAN_SYNODIC_MONTH = 29.530588861;
+astral.MEAN_SYNODIC_MONTH = MEAN_SYNODIC_MONTH;
+
+
+// Return the moment of n-th new moon after (or before) the new moon
+// of January 11, 1.  Adapted from "Astronomical Algorithms"
+// by Jean Meeus, Willmann_Bell, Inc., 2nd ed., 1998.
+function nth_new_moon(n) {
+  var n0 = 24724,
+      k = n - n0,
+      c = k / 1236.85,
+      approx = (J2000 +
+                poly(c, [5.09766,
+                         MEAN_SYNODIC_MONTH * 1236.85,
+                         0.0001437,
+                         -0.000000150,
+                         0.00000000073])),
+      cap_E = poly(c, [1, -0.002516, -0.0000074]),
+      solar_anomaly = poly(c, [2.5534,
+                               1236.85 * 29.10535669,
+                               -0.0000014, -0.00000011]),
+      lunar_anomaly = poly(c, [201.5643,
+                               (385.81693528 * 1236.85),
+                               0.0107582, 0.00001238,
+                              -0.000000058]),
+      moon_argument = poly(c, [160.7108,
+                               (390.67050284 * 1236.85),
+                               -0.0016118, -0.00000227,
+                               0.000000011]),
+      cap_omega = poly(c, [124.7746,
+                           (-1.56375588 * 1236.85),
+                           0.0020672, 0.00000215]),
+      E_factor = [0, 1, 0, 0, 1, 1, 2, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0],
+      solar_coeff = [0, 1, 0, 0, -1, 1, 2, 0, 0, 1, 0, 1, 1, -1, 2,
+                   0, 3, 1, 0, 1, -1, -1, 1, 0],
+      lunar_coeff = [1, 0, 2, 0, 1, 1, 0, 1, 1, 2, 3, 0, 0, 2, 1, 2,
+                   0, 1, 2, 1, 1, 1, 3, 4],
+      moon_coeff = [0, 0, 0, 2, 0, 0, 0, -2, 2, 0, 0, 2, -2, 0, 0,
+                  -2, 0, -2, 2, 2, 2, -2, 0, 0],
+      sine_coeff = [-0.40720, 0.17241, 0.01608,
+                    0.01039, 0.00739, -0.00514,
+                    0.00208, -0.00111, -0.00057,
+                    0.00056, -0.00042, 0.00042,
+                    0.00038, -0.00024, -0.00007,
+                    0.00004, 0.00004, 0.00003,
+                    0.00003, -0.00003, 0.00003,
+                    -0.00002, -0.00002, 0.00002],
+    correction = (-0.00017 * sin_degrees(cap_omega) +
+                  sigma([sine_coeff, E_factor, solar_coeff,
+                         lunar_coeff, moon_coeff],
+                        function(v, w, x, y, z) {
+                          return (v *
+                                  Math.pow(cap_E, w) *
+                                  sin_degrees((x * solar_anomaly) + 
+                                              (y * lunar_anomaly) +
+                                              (z * moon_argument)));})),
+    add_const = [251.88, 251.83, 349.42, 84.66,
+                 141.74, 207.14, 154.84, 34.52,
+                 207.19, 291.34, 161.72, 239.56,
+                 331.55],
+    add_coeff = [0.016321, 26.651886, 36.412478,
+                 18.206239, 53.303771, 2.453732,
+                 7.306860, 27.261239, 0.121824,
+                 1.844379, 24.198154, 25.513099,
+                 3.592518],
+    add_factor = [0.000165, 0.000164, 0.000126,
+                  0.000110, 0.000062, 0.000060,
+                  0.000056, 0.000047, 0.000042,
+                  0.000040, 0.000037, 0.000035,
+                  0.000023],
+    extra = (0.000325 *
+             sin_degrees(poly(c, [299.77, 132.8475848,
+                                      -0.009173]))),
+    additional = sigma([add_const, add_coeff, add_factor],
+                       function(i, j, l) {return l * sin_degrees(i + j * k)});
+
+    return universal_from_dynamical(approx + correction + extra + additional);
+}
+astral.nth_new_moon = nth_new_moon;
+
+
+
+// Return the lunar phase, as an angle in degrees, at moment tee.
+// An angle of 0 means a new moon, 90 degrees means the
+// first quarter, 180 means a full moon, and 270 degrees
+// means the last quarter.
+function lunar_phase(tee) {
+  var phi = mod(lunar_longitude(tee) - solar_longitude(tee), 360),
+      t0 = nth_new_moon(0),
+      n = iround((tee - t0) / MEAN_SYNODIC_MONTH),
+      phi_prime = (deg(360) * mod((tee - nth_new_moon(n)) / MEAN_SYNODIC_MONTH, 1));
+
+  if (Math.abs(phi - phi_prime) > 180) return phi_prime;
+
+  return phi;
+}
+astral.lunar_phase = lunar_phase;

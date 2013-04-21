@@ -6,7 +6,7 @@
   "keywords"    : ["astronomy", "algorithms"],
   "homepage"    : "http://espinielli.github.com/astral.js",
   "repository"  : {"type": "git", "url": "http://github.com/espinielli/astral.js"},
-  "dependencies": {"bignumber.js": "1.0.1"},
+  "dependencies": {},
   "devDependencies": {
     "smash": "~0.0.8",
     "uglify-js": "",

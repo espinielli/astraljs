@@ -157,10 +157,11 @@ astral.poly = poly;
 
 function polyAlt(x, a) {
   var l = a.length,
-    p = BigNumber(a[l - 1]),
+    p = a[l - 1],
+    y = x,
     i = l - 2;
   while (i >= 0) {
-    p = p.times(x).plus(a[i]);
+    p = p.multiply(y).add(a[i]);
     --i;
   }
   return p;
