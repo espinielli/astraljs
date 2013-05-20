@@ -1,5 +1,9 @@
-// Return the angular data structure.
+var τ = 2 * Math.PI,
+  degrees = 360 / τ,
+  radians = τ / 360;
 
+
+// Return the angular data structure.
 function degrees_minutes_seconds(d, m, s) {
   return [d, m, s];
 }
@@ -13,56 +17,57 @@ function angle_from_degrees(alpha) {
     s = mod(alpha * 60 * 60, 60);
   return degrees_minutes_seconds(d, m, s);
 }
-astral.angle_from_degrees = angle_from_degrees;
+aa.angle_from_degrees = angle_from_degrees;
 
 // Return decimal degrees
 
 function decimal_degrees(d, m, s) {
   return d + (m + s / 60) / 60;
 }
-astral.decimal_degrees = decimal_degrees;
+aa.decimal_degrees = decimal_degrees;
 
 // define sign of number
-Math.signum = function(x) {
+function signum(x) {
   return x ? x < 0 ? -1 : 1 : 0;
 };
+aa.signum = signum;
+Math.signum = signum;
 
 // round a-la Common Lisp
-
 function round(n) {
   return Math.signum(n) * Math.round(Math.abs(n));
 }
-astral.round = round;
+aa.round = round;
 
 // function integer(n) { return n - (mod(n,1));}
-// astral.int = integer;
+// aa.int = integer;
 
 function mod(m, n) {
   return m - (n * ifloor(m / n));
 }
-astral.mod = mod;
+aa.mod = mod;
 
 function quotient(m, n) {
   return ifloor(m / n);
 }
-astral.quotient = quotient;
+aa.quotient = quotient;
 
 function ifloor(n) {
   return Math.floor(n);
 }
-astral.ifloor = ifloor;
+aa.ifloor = ifloor;
 
 function iround(n) {
   return round(n);
 }
-astral.iround = iround;
+aa.iround = iround;
 
 // Return same as mod() with y instead of 0
 
 function amod(x, y) {
   return y + (mod(x, -y));
 }
-astral.amod = amod;
+aa.amod = amod;
 
 // Return first integer greater or equal to initial index, i,
 // such that condition, p, holds.
@@ -70,7 +75,7 @@ astral.amod = amod;
 function next(i, p) {
   return (p(i) ? i : next(i + 1, p));
 }
-astral.next = next;
+aa.next = next;
 
 // Return last integer greater or equal to initial index, i,
 // such that condition, p, holds.
@@ -78,7 +83,7 @@ astral.next = next;
 function final(i, p) {
   return (!p(i)) ? i - 1 : final(i + 1, p);
 }
-astral.final = final;
+aa.final = final;
 
 
 // Return the sum of f(i) from i=k, k+1, ... till p(i) holds true or 0.
@@ -87,7 +92,7 @@ astral.final = final;
 function summa(f, k, p) {
   return ((!p(k)) ? 0 : f(k) + summa(f, k + 1, p));
 }
-astral.summa = summa;
+aa.summa = summa;
 
 // Bisection search for x in [lo, hi] such that condition 'e' holds.
 // p determines when to go left.
@@ -98,7 +103,7 @@ function binary_search(lo, hi, p, e) {
   if (e(x)) return binary_search(lo, x, p, e);
   return binary_search(x, hi, p, e);
 }
-astral.binary_search = binary_search;
+aa.binary_search = binary_search;
 
 // Find inverse of angular function 'f' at 'y' within interval [a,b].
 // Default precision is 0.00001.
@@ -115,7 +120,7 @@ function invert_angular(f, y, a, b, prec) {
     return mod((f(x) - y), 360) < 180;
   });
 }
-astral.invert_angular = invert_angular;
+aa.invert_angular = invert_angular;
 
 // homemade zip (could have used Underscore.js)
 
@@ -126,7 +131,7 @@ function zip(arrays) {
     });
   });
 }
-astral.zip = zip;
+aa.zip = zip;
 
 function sigma(l, b) {
   return zip(l).map(function(v) {
@@ -136,7 +141,7 @@ function sigma(l, b) {
     return memo + n;
   }, 0);
 }
-astral.sigma = sigma;
+aa.sigma = sigma;
 
 // Calculate polynomial with coefficients 'a' at point 'x'.
 // The polynomial is
@@ -153,7 +158,7 @@ function poly(x, a) {
   }
   return p;
 }
-astral.poly = poly;
+aa.poly = poly;
 
 function polyAlt(x, a) {
   var l = a.length,
@@ -166,18 +171,18 @@ function polyAlt(x, a) {
   }
   return p;
 }
-astral.polyAlt = polyAlt;
+aa.polyAlt = polyAlt;
 
 
 function sin_degrees(α) {
   return Math.sin(α * radians);
 }
-astral.sin_degrees = sin_degrees;
+aa.sin_degrees = sin_degrees;
 
 function cos_degrees(α) {
   return Math.cos(α * radians);
 }
-astral.cos_degrees = cos_degrees;
+aa.cos_degrees = cos_degrees;
 
 // Return a normalize angle α to range [0,360) degrees.
 

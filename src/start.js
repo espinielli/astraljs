@@ -6,5 +6,5 @@
 // Synonyms
 // stellar - sidereal
 
-(function() {
-  var astral = {};
+aa = (function(){
+  var aa = {version: 0.1}; // semver

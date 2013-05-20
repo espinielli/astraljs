@@ -1,5 +1,7 @@
+import "astral-calendrica";
+
 var J2000 = days_from_hours(12) + gregorian_new_year(2000);
-astral.J2000 = J2000;
+aa.J2000 = J2000;
 
 // Return Julian centuries since 2000 at moment 'tee' (in days and
 // fractions since EPOCH).
@@ -7,21 +9,21 @@ astral.J2000 = J2000;
 function julian_centuries(tee) {
   return (dynamical_from_universal(tee) - J2000) / 36525;
 }
-astral.julian_centuries = julian_centuries;
+aa.julian_centuries = julian_centuries;
 
 // Return Dynamical time at Universal moment, tee.
 
 function dynamical_from_universal(tee) {
   return tee + ephemeris_correction(tee);
 }
-astral.dynamical_from_universal = dynamical_from_universal;
+aa.dynamical_from_universal = dynamical_from_universal;
 
 // Return Universal moment from Dynamical time, tee.
 
 function universal_from_dynamical(tee) {
   return tee - ephemeris_correction(tee);
 }
-astral.universal_from_dynamical = universal_from_dynamical;
+aa.universal_from_dynamical = universal_from_dynamical;
 
 // Return Dynamical Time minus Universal Time (in days) for
 // moment, 'tee'.  Adapted from "Astronomical Algorithms"
@@ -53,7 +55,7 @@ function ephemeris_correction(tee) {
     return (1 / 86400 * (((x * x) / 41048480) - 15));
   }
 }
-astral.ephemeris_correction = ephemeris_correction;
+aa.ephemeris_correction = ephemeris_correction;
 
 
 // Return mean longitude of moon (in degrees) at moment
@@ -68,7 +70,7 @@ function mean_lunar_longitude(c) {
                                      1 / 538841,
                                      -1 / 65194000]));
 }
-astral.mean_lunar_longitude = mean_lunar_longitude;
+aa.mean_lunar_longitude = mean_lunar_longitude;
 
 // Return elongation of moon (in degrees) at moment
 // given in Julian centuries c.
@@ -80,7 +82,7 @@ function lunar_elongation(c) {
   445267.1114034, -0.0018819,
   1 / 545868, -1 / 113065000]));
 }
-astral.lunar_elongation = lunar_elongation;
+aa.lunar_elongation = lunar_elongation;
 
 
 // Return mean anomaly of sun (in degrees) at moment
@@ -93,7 +95,7 @@ function solar_anomaly(c) {
   35999.0502909, -0.0001536,
   1 / 24490000]));
 }
-astral.solar_anomaly = solar_anomaly;
+aa.solar_anomaly = solar_anomaly;
 
 
 // Return mean anomaly of moon (in degrees) at moment
@@ -107,7 +109,7 @@ function lunar_anomaly(c) {
   0.0087414,
   1 / 69699, -1 / 14712000]));
 }
-astral.lunar_anomaly = lunar_anomaly;
+aa.lunar_anomaly = lunar_anomaly;
 
 
 // Return Moon's argument of latitude (in degrees) at moment
@@ -120,7 +122,7 @@ function moon_node(c) {
   483202.0175233, -0.0036539, -1 / 3526000,
   1 / 863310000]));
 }
-astral.moon_node = moon_node;
+aa.moon_node = moon_node;
 
 
 // Return the longitudinal nutation at moment, tee."""
@@ -131,7 +133,7 @@ function nutation(tee) {
     cap_B = poly(c, [201.11, 72001.5377, 0.00057]);
   return (-0.004778 * sin_degrees(cap_A) + -0.0003667 * sin_degrees(cap_B));
 }
-astral.nutation = nutation;
+aa.nutation = nutation;
 
 
 // Return longitude of moon (in degrees) at moment tee.
@@ -150,16 +152,19 @@ function lunar_longitude(tee) {
     1, 2, 2, 4, 2, 0, 2, 2, 1, 2, 0, 0, 2, 2, 2, 4, 0, 3, 2, 4, 0, 2,
     2, 2, 4, 0, 4, 1, 2, 0, 1, 3, 4, 2, 0, 1, 2],
     args_solar_anomaly = [0, 0, 0, 0, 1, 0, 0, -1, 0, -1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1,
-    0, 1, -1, 0, 0, 0, 1, 0, -1, 0, -2, 1, 2, -2, 0, 0, -1, 0, 0, 1, -1, 2, 2, 1, -1, 0, 0, -1, 0, 1, 0, 1, 0, 0, -1, 2, 1, 0],
-    args_lunar_anomaly = [1, -1, 0, 2, 0, 0, -2, -1, 1, 0, -1, 0, 1, 0, 1, 1, -1, 3, -2, -1, 0, -1, 0, 1, 2, 0, -3, -2, -1, -2, 1, 0, 2, 0, -1, 1, 0, -1, 2, -1, 1, -2, -1, -1, -2, 0, 1, 4, 0, -2, 0, 2, 1, -2, -3,
-    2, 1, -1, 3],
+    0, 1, -1, 0, 0, 0, 1, 0, -1, 0, -2, 1, 2, -2, 0, 0, -1, 0, 0, 1, -1, 2, 2, 1, -1, 0, 0,
+    -1, 0, 1, 0, 1, 0, 0, -1, 2, 1, 0],
+    args_lunar_anomaly = [1, -1, 0, 2, 0, 0, -2, -1, 1, 0, -1, 0, 1, 0, 1, 1, -1, 3, -2,
+    -1, 0, -1, 0, 1, 2, 0, -3, -2, -1, -2, 1, 0, 2, 0, -1, 1, 0, -1, 2, -1, 1, -2, -1, -1,
+    -2, 0, 1, 4, 0, -2, 0, 2, 1, -2, -3, 2, 1, -1, 3],
     args_moon_node = [0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, -2, 2, -2, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, -2, 2, 0, 2, 0, 0, 0, 0,
     0, 0, -2, 0, 0, 0, 0, -2, -2, 0, 0, 0, 0, 0, 0, 0],
     sine_coefficients = [6288774, 1274027, 658314, 213618, -185116, -114332,
     58793, 57066, 53322, 45758, -40923, -34720, -30383,
-    15327, -12528, 10980, 10675, 10034, 8548, -7888, -6766, -5163, 4987, 4036, 3994, 3861, 3665, -2689, -2602, 2390, -2348, 2236, -2120, -2069, 2048, -1773, -1595, 1215, -1110, -892, -810, 759, -713, -700, 691,
-    596, 549, 537, 520, -487, -399, -381, 351, -340, 330,
+    15327, -12528, 10980, 10675, 10034, 8548, -7888, -6766, -5163, 4987, 4036, 3994, 3861,
+    3665, -2689, -2602, 2390, -2348, 2236, -2120, -2069, 2048, -1773, -1595, 1215, -1110,
+    -892, -810, 759, -713, -700, 691, 596, 549, 537, 520, -487, -399, -381, 351, -340, 330,
     327, -323, 299, 294],
     correction = (1 / 1000000 * sigma([sine_coefficients, args_lunar_elongation,
     args_solar_anomaly, args_lunar_anomaly,
@@ -175,23 +180,7 @@ function lunar_longitude(tee) {
 
   return mod(cap_L_prime + correction + venus + jupiter + flat_earth + nutation(tee), 360);
 }
-astral.lunar_longitude = lunar_longitude;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+aa.lunar_longitude = lunar_longitude;
 
 
 // Return the latitude of moon (in degrees) at moment, tee.
@@ -255,7 +244,7 @@ function lunar_latitude(tee) {
 
   return beta + venus + flat_earth + extra;
 }
-astral.lunar_latitude = lunar_latitude;
+aa.lunar_latitude = lunar_latitude;
 
 
 
@@ -309,7 +298,7 @@ function lunar_distance(tee) {
                                                    (z * cap_F)));});
     return 385000560 + correction;
 }
-astral.lunar_distance = lunar_distance;
+aa.lunar_distance = lunar_distance;
 
 
 // Return the geocentric apparent lunar diameter of the moon (in
@@ -318,7 +307,7 @@ astral.lunar_distance = lunar_distance;
 function lunar_diameter(tee) {
   return (1792367000/9) / lunar_distance(tee);
 }
-astral.lunar_diameter = lunar_diameter;
+aa.lunar_diameter = lunar_diameter;
 
 
 // Return the moon position (geocentric latitude and longitude [in degrees]
@@ -328,11 +317,11 @@ astral.lunar_diameter = lunar_diameter;
 function lunar_position(tee) {
   return [lunar_latitude(tee), lunar_longitude(tee), lunar_distance(tee)];
 }
-astral.lunar_position = lunar_position;
+aa.lunar_position = lunar_position;
 
 
 var MEAN_SYNODIC_MONTH = 29.530588861;
-astral.MEAN_SYNODIC_MONTH = MEAN_SYNODIC_MONTH;
+aa.MEAN_SYNODIC_MONTH = MEAN_SYNODIC_MONTH;
 
 
 // Return the moment of n-th new moon after (or before) the new moon
@@ -410,7 +399,7 @@ function nth_new_moon(n) {
 
     return universal_from_dynamical(approx + correction + extra + additional);
 }
-astral.nth_new_moon = nth_new_moon;
+aa.nth_new_moon = nth_new_moon;
 
 
 
@@ -428,4 +417,4 @@ function lunar_phase(tee) {
 
   return phi;
 }
-astral.lunar_phase = lunar_phase;
+aa.lunar_phase = lunar_phase;
