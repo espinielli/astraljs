@@ -2,15 +2,30 @@
   "name"        : "astral",
   "version"     : "0.0.1",
   "description" : "Astronomical Calculations in Javascript.",
-  "author"      : "Enrico Spinielli <enrico.spinielli@gmail.com>",
+  "author"      : {
+    "name": "Enrico Spinielli",
+    "url": "http://enrico.spinielli.net"
+    },
   "keywords"    : ["astronomy", "algorithms"],
-  "homepage"    : "http://espinielli.github.com/astral.js",
+  "homepage"    : "http://astral.js.org",
+  "license"     : "BSD-3-Clause",
   "repository"  : {"type": "git", "url": "http://github.com/espinielli/astral.js"},
-  "dependencies": {},
+  "main": "astral",
+  "jsnext:main": "index",
+  "scripts": {
+    "pretest": "d3-bundler --polyfill-map --format=cjs --name=astral -- astral.js | uglifyjs -c -m -o astral.min.js",
+    "test": "faucet `find test -name '*-test.js'`",
+    "prepublish": "npm run test && uglifyjs astral.js -c -m -o astral.min.js && zip -j astral.zip -- LICENSE README.md astral.js astral.min.js"
+  },
   "devDependencies": {
     "smash": "~0.0.8",
     "uglify-js": "",
+    "d3-bundler": "~0.2.5",
+    "faucet": "0.0",
+    "tape": "4",
+    "uglifyjs": "2",
     "vows": ""
     },
     "scripts"     : {"test": "./node_modules/vows/bin/vows `find . -name \"*-test.js\" \\! -path \"./node_modules/*\"`"}
   }
+}

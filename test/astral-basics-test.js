@@ -1,13 +1,11 @@
-var vows = require("vows"),
-    assert = require("./assert"),
-    load = require("./load");
+var assert = require("./assert");
 
-var τ = 2 * Math.PI,
-  degrees = 360 / τ,
-  radians = τ / 360;
+// var τ = 2 * Math.PI,
+//   degrees = 360 / τ,
+//   radians = τ / 360;
 
 
-var suite = vows.describe("astral-basic");
+// var suite = vows.describe("astral-basic");
 
 suite.addBatch({
   "basic": {
@@ -138,54 +136,8 @@ suite.addBatch({
         function p(a, b) { return Math.abs(fminusy(0.5*(a+b), y)) <= 1e-5;}
         function e(x) { return fminusy(x, y) >= 0;}
         var fx, y, x0;
-
-        // function y = f(x), f(x) = x, y0 = 1.0; solution is x0 = 1.0
-        fx = function(x) {return x;},
-        y  = 1.0,
-        x0 = 1.0;
-        assert.inDelta(topic(0.0, 3.1, p, e), x0, 1e-5);
-
-        // new function y = f(x), f(x) = x**2 - 4*x + 4, y0 = 0.0; solution x0=2.0
-        fx = function(x) { return x*x -4 * x + 4.0;};
-        y = 0.0;
-        x0 = 2.0;
-        assert.inDelta(topic(1.5, 2.5, p, e), x0, 1e-5);
-      }
-    },
-    'invert angular': {
-      topic: function(aa) { return aa.invert_angular;},
-      'invert_angular': function(topic) {
-        assert.inDelta(topic(Math.tan, 1.0, 0, 60*radians), 45*radians, 1e-5);
-      }
-    },
-    'zip': {
-      topic: function(aa) { return aa.zip;},
-      'zip': function(topic) {
-        assert.deepEqual(topic([[1,2],[11,22],[111,222]]), [[1,11,111],[2,22,222]]);
-        assert.deepEqual(topic([]), []);
-      }
-    },
-    'sigma': {
-      topic: function(aa) { return aa.sigma;},
-      'sigma': function(topic) {
-        var a = [ 1, 2, 3, 4],
-            b = [ 5, 6, 7, 8],
-            c = [ 9,10,11,12],
-          ell = [a,b,c],
-          bi  = function(x, y, z) {return x * y * z;};
-        assert.equal(topic(ell, bi), 780);
-      }
-    },
-    'polynomial evaluation': {
-      topic: function(aa) { return aa.poly;},
-      'poly': function(topic) {
-        assert.equal(topic(0, [2, 2, 1]), 2);
-        assert.equal(topic(1, [2, 2, 1]), 5);
-      }
-    }
-  }
-});
+ });
 
 
 
-suite.export(module);
+// suite.export(module);

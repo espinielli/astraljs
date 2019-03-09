@@ -1,8 +1,8 @@
-var vows = require("vows"),
-    assert = require("assert"),
-    load = require("./load");
+// var vows = require("vows"),
+//     assert = require("assert"),
+//     load = require("./load");
 
-var suite = vows.describe("astral-astronomy");
+// var suite = vows.describe("astral-astronomy");
 
 suite.addBatch({
   "astronomy": {
@@ -204,5 +204,4 @@ suite.addBatch({
     }
 });
 
-
-suite.export(module);
+// suite.export(module);

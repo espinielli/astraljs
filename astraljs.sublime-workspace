@@ -1,0 +1,920 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"eur",
+				"euroRate"
+			],
+			[
+				"APT_",
+				"APT_COUNTRY"
+			],
+			[
+				"filere",
+				"filteredCSV"
+			],
+			[
+				"filtered",
+				"filteredCSV"
+			],
+			[
+				"csv",
+				"csv"
+			],
+			[
+				"current",
+				"currentPage"
+			],
+			[
+				"strip",
+				"stripTrailingSlash"
+			],
+			[
+				"table",
+				"table-row"
+			],
+			[
+				"border",
+				"border-width"
+			],
+			[
+				"for",
+				"forEach"
+			],
+			[
+				"ace",
+				"aceYear"
+			],
+			[
+				"date",
+				"dateFormat"
+			],
+			[
+				"ac",
+				"aceYear"
+			],
+			[
+				"data",
+				"dataFile"
+			],
+			[
+				"FL",
+				"NB_OF_FLIGHT"
+			],
+			[
+				"set",
+				"setAccessor"
+			],
+			[
+				"ge",
+				"getMap"
+			],
+			[
+				"h",
+				"h1	Tag"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"logo",
+				"logoXPadding"
+			],
+			[
+				"lo",
+				"logoXPadding"
+			],
+			[
+				"st",
+				"style	Tag"
+			],
+			[
+				"dot",
+				"dotWidth"
+			],
+			[
+				"country",
+				"countryDimension"
+			],
+			[
+				"iso",
+				"iso_n3"
+			],
+			[
+				"propert",
+				"property-id"
+			],
+			[
+				"RP",
+				"AIRPORTS_RP1"
+			],
+			[
+				"ne",
+				"ne_10m_admin_0_countries"
+			],
+			[
+				"atc",
+				"atc_other_delay"
+			],
+			[
+				"to",
+				"totalPerCountry"
+			],
+			[
+				"yer",
+				"yearGroup"
+			],
+			[
+				"sea",
+				"seasonGroup"
+			],
+			[
+				"seas",
+				"seasonDimension"
+			],
+			[
+				"mon",
+				"monthlyDimension"
+			],
+			[
+				"total",
+				"total_delay"
+			],
+			[
+				"del",
+				"delayslineChart"
+			],
+			[
+				"mi",
+				"minYear"
+			],
+			[
+				"totalP",
+				"totalPerYear"
+			],
+			[
+				"t",
+				"total_delay"
+			],
+			[
+				"de",
+				"delayslineChart"
+			],
+			[
+				"ye",
+				"yearlyDimension"
+			],
+			[
+				"tot",
+				"totalPerMonth"
+			],
+			[
+				"read",
+				"readDelays"
+			],
+			[
+				"l",
+				"li	Tag"
+			],
+			[
+				"u",
+				"ul	Tag"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Makefile",
+			"settings":
+			{
+				"buffer_size": 1583,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 920,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "test/astral-astronomy-test.js",
+			"settings":
+			{
+				"buffer_size": 7429,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/astral-basics-test.js",
+			"settings":
+			{
+				"buffer_size": 6759,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/astral-calendrica-test.js",
+			"settings":
+			{
+				"buffer_size": 1287,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/User/Mocha.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/User/Mocha.sublime-build",
+					""
+				],
+				[
+					"Packages/User/Mocha.sublime-build",
+					"Clean"
+				]
+			],
+			[
+				"Packages/User/Mocha.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 387.0,
+		"last_filter": "insta",
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"traili",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"space",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"inde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"spac",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"ind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"pre",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"lo",
+				"Convert Case: Lower Case"
+			],
+			[
+				"prett",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"jso",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"pret",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"re",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"rei",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"low",
+				"Convert Case: Lower Case"
+			],
+			[
+				"lowe",
+				"Convert Case: Lower Case"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 476.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"ls",
+			"import urllib.request,os,hashlib; h = '2deb499853c4371624f5a07e27c334aa' + 'bf8c4e67d14fb0525ba4f89698a6d7e1'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/espin/git/astraljs",
+		"/Users/espin/git/astraljs/test"
+	],
+	"file_history":
+	[
+		"/Users/espin/Library/Application Support/Sublime Text 3/Packages/User/Mocha.sublime-build",
+		"/Users/espin/kaos/learn-haskell/learn-haskell.cabal",
+		"/Users/espin/git/PRU/website/_layouts/defs-index.html",
+		"/Users/espin/git/PRU/website/data/index.md",
+		"/Users/espin/git/PRU/website/data/meta/index_of_definitions.md",
+		"/Users/espin/git/PRU/website/+1",
+		"/Users/espin/git/PRU/website/_site/data/meta/index_of_definitions.html",
+		"/Users/espin/git/PRU/website/data/meta/index.md",
+		"/Users/espin/git/PRU/website/data/set/ert_dly/En-Route_ATFM_Delay.md",
+		"/Users/espin/git/PRU/website/data/set/ert_flt/En-Route_Traffic.md",
+		"/Users/espin/git/PRU/website/data/set/tx_out/Taxi-Out_Additional_Time.md",
+		"/Users/espin/git/PRU/website/data/set/tx_out/Taxi-out_Additional_Time.md",
+		"/Users/espin/git/PRU/website/data/set/atc_pre/ATC_Pre-Departure_Delay.md",
+		"/Users/espin/git/PRU/website/data/set/atc_pre/ATC_Pre_Departure.md",
+		"/Users/espin/git/PRU/website/data/set/hfe/Horizontal_Flight_Efficiency.md",
+		"/Users/espin/git/PRU/website/data/set/slt_adh/ATFM_Slot_Adherence.md",
+		"/Users/espin/git/PRU/website/data/set/ert_flt/En_route_Traffic.md",
+		"/Users/espin/git/PRU/website/data/set/ert_dly/En_route_ATFM_Delay.md",
+		"/Users/espin/git/PRU/website/data/set/apt_flt/Airport_Traffic.md",
+		"/Users/espin/git/PRU/website/data/set/asma/ASMA_Additional_Time.md",
+		"/Users/espin/git/PRU/website/data/set/clpx/Traffic_Complexity_Score.md",
+		"/Users/espin/git/PRU/website/data/set/ace_opt/ace_operational_data.html",
+		"/Users/espin/git/PRU/website/data/set/apt_dly/airport_arrival_atfm_delay.html",
+		"/Users/espin/git/PRU/website/data/set/apt_dly/Airport_ATFM_Delay_meta.md",
+		"/Users/espin/git/PRU/website/data/set/ace_opt/ACE_Operational_Data_meta.md",
+		"/Users/espin/git/PRU/website/_data/navigation.yml",
+		"/Users/espin/git/PRU/website/metadata/dataset/ATC_Pre_Departure.md",
+		"/Users/espin/git/PRU/website/references.bib",
+		"/Users/espin/git/PRU/website/metadata/dataset/ATFM_Slot_Adherence.md",
+		"/Users/espin/git/PRU/website/metadata/dataset/ASMA_Additional_Time.md",
+		"/Users/espin/git/PRU/website/metadata/dataset/Airport_Traffic.md",
+		"/Users/espin/git/PRU/website/metadata/dataset/Airport_ATFM_Delay.md",
+		"/Users/espin/git/PRU/website/metadata/dataset/ACE_Operational_Data.md",
+		"/Users/espin/git/PRU/website/metadata/dataset/_template.md",
+		"/Users/espin/git/PRU/website/metadata/dataset/En_route_ATFM_Delay.md",
+		"/Users/espin/git/PRU/website/metadata/dataset/En_route_Traffic.md",
+		"/Users/espin/git/PRU/website/metadata/dataset/Horizontal_Flight_Efficiency.md",
+		"/Users/espin/git/PRU/website/metadata/dataset/Taxi-out_Additional_Time.md",
+		"/Users/espin/git/PRU/website/metadata/dataset/Traffic_Complexity_Score.md",
+		"/Users/espin/git/PRU/website/about/index.md",
+		"/Users/espin/git/PRU/website/_config.yml",
+		"/Users/espin/.aliases",
+		"/Users/espin/git/PRU/website/css/table.css",
+		"/Users/espin/git/PRU/website/metadata/dataset/index.md",
+		"/Users/espin/git/PRU/website/metadata/index.md",
+		"/Users/espin/git/PRU/website/Gemfile",
+		"/Users/espin/git/PRU/website/_config_exp.yml",
+		"/Users/espin/git/PRU/website/_includes/_navigation.html",
+		"/Users/espin/git/PRU/website/index.html",
+		"/Users/espin/git/PRU/website/contact_us/index.md",
+		"/Users/espin/git/PRU/website/.git/MERGE_MSG",
+		"/Users/espin/git/PRU/website/cucu.md",
+		"/Users/espin/git/PRU/website/data/arrival_atfm_delay.html",
+		"/Users/espin/git/PRU/website/data/Airport ATFM Delay.csv",
+		"/Users/espin/Downloads/ArrivalATFMdelay.md.md",
+		"/Users/espin/git/PRU/website/_includes/_head.html",
+		"/Users/espin/git/PRU/website/data/ace.html",
+		"/Users/espin/git/PRU/website/data/ACE - ANSP.csv",
+		"/Users/espin/git/PRU/website/data/2015-04 - ACE Monthly Operational data - ANSP.csv",
+		"/Users/espin/git/PRU/website/_config_dev.yml",
+		"/Users/espin/git/PRU/website/metadata/dataset/Taxi_out_Additional_Time.md",
+		"/Users/espin/git/PRU/website/metadata/dataset/ACE_monthly.md",
+		"/Users/espin/git/PRU/website/_sass/normalize.scss",
+		"/Users/espin/git/PRU/website/_site/css/main.css",
+		"/Users/espin/Google Drive/Eurocontrol/PRU/ACE_monthly.md",
+		"/Users/espin/Google Drive/Eurocontrol/PRU/ArrivalATFMdelay.md",
+		"/Users/espin/Google Drive/Eurocontrol/PRU/FABs.md",
+		"/Users/espin/Google Drive/Eurocontrol/PRU/HFE.md",
+		"/Users/espin/git/PRU/website/metadata/methodology/_README.md",
+		"/Users/espin/git/PRU/website/metadata/dataset/_README.md",
+		"/Users/espin/git/PRU/website/.git/PULLREQ_EDITMSG",
+		"/Users/espin/git/PRU/website/data/json2csv.js",
+		"/Users/espin/git/PRU/website/metadata/definition/asma_transit_time.md",
+		"/Users/espin/git/PRU/website/metadata/definition/atfm_delay.md",
+		"/Users/espin/git/PRU/website/metadata/definition/additional_asma_time.md",
+		"/Users/espin/git/PRU/website/metadata/definition/unimpeded_asma_time.md",
+		"/Users/espin/git/PRU/website/metadata/definition/asma.md",
+		"/Users/espin/git/PRU/website/metadata/definition/asma_time.md",
+		"/Users/espin/Library/Application Support/Sublime Text 3/Packages/User/GitGutter.sublime-settings",
+		"/Users/espin/git/PRU/website/posts/index.md",
+		"/Users/espin/git/PRU/website/meta/definition/atfm_delay.md",
+		"/Users/espin/git/PRU/website/meta/index.md",
+		"/Users/espin/git/PRU/website/json2csv.js",
+		"/Users/espin/git/PRU/website/references.md",
+		"/Users/espin/git/PRU/website/_posts/2015-03-19-different-look-interactive-content.md",
+		"/Users/espin/git/PRU/website/_posts/2015-01-02-welcome-to-pru.md",
+		"/Users/espin/git/PRU/website/_layouts/default.html",
+		"/Users/espin/git/PRU/website/_includes/_footer.html",
+		"/Users/espin/git/PRU/website/_includes/_mathjax.html",
+		"/Users/espin/git/PRU/website/_layouts/data.html",
+		"/Users/espin/git/PRU/website/_includes/_draft.html",
+		"/Users/espin/git/PRU/website/_includes/_head-data.html",
+		"/Users/espin/git/PRU/website/dashboard/index.html",
+		"/Users/espin/eurocontrol-logo-test.png",
+		"/Users/espin/git/PRU/pru-logo/index.html",
+		"/Users/espin/git/PRU/pru-logo/README.md",
+		"/Users/espin/git/PRU/data-dashboard/data-download.html",
+		"/Users/espin/git/PRU/website/_includes/data.html",
+		"/Users/espin/git/PRU/website/_layouts/_head-data.html",
+		"/Users/espin/git/PRU/website/_layouts/post.html",
+		"/Users/espin/git/PRU/data-dashboard/package.json",
+		"/Users/espin/git/PRU/data-dashboard/ace.js",
+		"/Users/espin/git/PRU/data-dashboard/ANSP-Traffic.csv",
+		"/Users/espin/Downloads/nyc_listings_20150101184336.csv",
+		"/Users/espin/Downloads/nyc_neighbourhoods.csv",
+		"/Users/espin/git/PRU/flows/data-download.html",
+		"/Users/espin/node_modules/ultra-repl/bin/ultra-repl.js",
+		"/usr/local/lib/node_modules/ultra-repl/lib/ScopedModule.js",
+		"/usr/local/lib/node_modules/ultra-repl/index.js",
+		"/usr/local/lib/node_modules/ultra-repl/lib/UltraREPL.js",
+		"/Users/espin/git/PRU/flows/data/20150413_ISOCountryPairTraffic2014.csv",
+		"/Users/espin/git/globalmigration/json/migrations.json",
+		"/Users/espin/git/globalmigration/Input data/country_custom.txt",
+		"/Users/espin/git/globalmigration/Input data/region_custom.txt",
+		"/Users/espin/git/globalmigration/Input data/region_default.txt",
+		"/tmp/ma",
+		"/Users/espin/bin/jsh",
+		"/Users/espin/git/PRU/flows/20150413_ISOCountryPairTraffic2014.csv",
+		"/Users/espin/git/PRU/back-to-the-future/md/automation.md",
+		"/Users/espin/git/PRU/back-to-the-future/index.html",
+		"/Users/espin/git/PRU/back-to-the-future/md/static.md",
+		"/Users/espin/git/PRU/back-to-the-future/md/interactive.md",
+		"/Users/espin/git/PRU/back-to-the-future/md/flow.md",
+		"/Users/espin/git/PRU/back-to-the-future/md/title.md",
+		"/Users/espin/git/PRU/back-to-the-future/md/repos.md",
+		"/Users/espin/git/PRU/back-to-the-future/md/resources.md",
+		"/Users/espin/git/PRU/slides/title.html",
+		"/Users/espin/git/PRU/back-to-the-future/md/references.md"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"coda",
+			"complexity",
+			"2013",
+			"width",
+			"Contacts",
+			">\n",
+			"radius",
+			"tick",
+			"resume",
+			"root",
+			"country",
+			"loading",
+			"console.log",
+			"arrYearG",
+			"all",
+			"top",
+			"Airports",
+			"years",
+			"airports",
+			"getmo",
+			"down",
+			"ace",
+			"\n   ",
+			"---",
+			"order",
+			"ENAV",
+			"+d.",
+			"+d.d",
+			"+",
+			";",
+			",",
+			"ansp",
+			"site.url",
+			"media",
+			"url",
+			"css",
+			"table",
+			"current",
+			"data",
+			"filter-count",
+			"button",
+			"press",
+			"filtered",
+			">\n",
+			"values",
+			"os",
+			"async",
+			"os",
+			"async",
+			"10",
+			"http:",
+			"brand",
+			"<hr",
+			"csv",
+			"<hr",
+			"max ",
+			"total-count",
+			"dc-table",
+			"PRU",
+			"select",
+			"<!",
+			"select",
+			"queue",
+			"nativemodule",
+			",",
+			"datafile",
+			"data",
+			"region",
+			"d3.",
+			"console",
+			"script ",
+			"src=",
+			"size",
+			".js",
+			".footer",
+			"footer",
+			"console",
+			"width",
+			"dotWidth",
+			"main",
+			"season",
+			"euchart",
+			"EBBR",
+			"console.",
+			"euchart",
+			"numberF",
+			"number",
+			"choro",
+			"euchart",
+			"states",
+			"adm0_a3\"",
+			"adm0_a3",
+			"hart",
+			"filter",
+			"countryChart",
+			"reset",
+			"country-chart",
+			"filtering",
+			"country",
+			"countryChart",
+			"country",
+			"dash",
+			"dc.",
+			"row",
+			"axis",
+			"size",
+			"font",
+			"margin",
+			"dashb",
+			"dash",
+			"eu",
+			"class=\"chart\"",
+			"charts",
+			"chart",
+			"filter",
+			"radius",
+			"country",
+			"reset",
+			"select",
+			"datacount",
+			"volumech",
+			"volume",
+			"optional",
+			"tur",
+			"turnoncontrols",
+			"(optiona",
+			"optiona",
+			"yearlyPerforma"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"+d.",
+			",",
+			"data-src=",
+			"dotSide",
+			"class=\"dc-chart\"",
+			") ",
+			"d.",
+			"delays."
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Makefile",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1583,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1583,
+								1583
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 740.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 920,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1,
+								1
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jekyll/Syntaxes/JSON (Jekyll).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "test/astral-astronomy-test.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7429,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3,
+								7429
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 2675.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "test/astral-basics-test.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6759,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								38,
+								6759
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2405.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "test/astral-calendrica-test.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1287,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3,
+								1287
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 185.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 254.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.haskell_error_checker":
+	{
+		"height": 100.0
+	},
+	"output.haskell_sublime_load":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "Packages/User/Mocha.sublime-build",
+	"project": "astraljs.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 789.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 315.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
