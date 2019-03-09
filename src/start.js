@@ -1,4 +1,4 @@
-// as·tral  
+// as·tral
 // /ˈastrəl/
 // Adjective
 // Of, connected with, or resembling the stars: "astral navigation".
