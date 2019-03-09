@@ -15,10 +15,10 @@ suite.addBatch({
     "ifloor": {
       topic: function(astral) { return astral.ifloor; },
       "ifloor and Co.": function(ifloor) {
-        assert.equal(ifloor( 1.4),  1.0);
-        assert.equal(ifloor(-1.4), -2);
-        assert.equal(ifloor(1.6),   1);
-        assert.equal(ifloor(-1.6), -2);
+        assert.equal(astral.ifloor( 1.4),  1.0);
+        assert.equal(astral.ifloor(-1.4), -2);
+        assert.equal(astral.ifloor(1.6),   1);
+        assert.equal(astral.ifloor(-1.6), -2);
       }
     },
     "round": {

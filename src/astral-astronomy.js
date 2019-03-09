@@ -5,21 +5,18 @@ aa.J2000 = J2000;
 
 // Return Julian centuries since 2000 at moment 'tee' (in days and
 // fractions since EPOCH).
-
 function julian_centuries(tee) {
   return (dynamical_from_universal(tee) - J2000) / 36525;
 }
 aa.julian_centuries = julian_centuries;
 
 // Return Dynamical time at Universal moment, tee.
-
 function dynamical_from_universal(tee) {
   return tee + ephemeris_correction(tee);
 }
 aa.dynamical_from_universal = dynamical_from_universal;
 
 // Return Universal moment from Dynamical time, tee.
-
 function universal_from_dynamical(tee) {
   return tee - ephemeris_correction(tee);
 }
@@ -28,7 +25,6 @@ aa.universal_from_dynamical = universal_from_dynamical;
 // Return Dynamical Time minus Universal Time (in days) for
 // moment, 'tee'.  Adapted from "Astronomical Algorithms"
 // by Jean Meeus, Willmann_Bell, Inc., 1991.
-
 function ephemeris_correction(tee) {
   var year = gregorian_year_from_fixed(ifloor(tee)),
     c = gregorian_date_difference(gregorian_date(1900, JANUARY, 1),
@@ -76,7 +72,6 @@ aa.mean_lunar_longitude = mean_lunar_longitude;
 // given in Julian centuries c.
 // Adapted from eq. 47.2 in "Astronomical Algorithms" by Jean Meeus,
 // Willmann_Bell, Inc., 2nd ed. with corrections, 2005.
-
 function lunar_elongation(c) {
   return normalized_degrees(poly(c, [297.8501921,
   445267.1114034, -0.0018819,
@@ -89,7 +84,6 @@ aa.lunar_elongation = lunar_elongation;
 // given in Julian centuries c.
 // Adapted from eq. 47.3 in "Astronomical Algorithms" by Jean Meeus,
 // Willmann_Bell, Inc., 2nd ed. with corrections, 2005.
-
 function solar_anomaly(c) {
   return normalized_degrees(poly(c, [357.5291092,
   35999.0502909, -0.0001536,
@@ -102,7 +96,6 @@ aa.solar_anomaly = solar_anomaly;
 // given in Julian centuries c.
 // Adapted from eq. 47.4 in "Astronomical Algorithms" by Jean Meeus,
 // Willmann_Bell, Inc., 2nd ed. with corrections, 2005."""
-
 function lunar_anomaly(c) {
   return normalized_degrees(poly(c, [134.9633964,
   477198.8675055,
@@ -116,7 +109,6 @@ aa.lunar_anomaly = lunar_anomaly;
 // given in Julian centuries 'c'.
 // Adapted from eq. 47.5 in "Astronomical Algorithms" by Jean Meeus,
 // Willmann_Bell, Inc., 2nd ed. with corrections, 2005."""
-
 function moon_node(c) {
   return normalized_degrees(poly(c, [93.2720950,
   483202.0175233, -0.0036539, -1 / 3526000,
@@ -126,7 +118,6 @@ aa.moon_node = moon_node;
 
 
 // Return the longitudinal nutation at moment, tee."""
-
 function nutation(tee) {
   var c = julian_centuries(tee),
     cap_A = poly(c, [124.90, -1934.134, 0.002063]),
@@ -139,7 +130,6 @@ aa.nutation = nutation;
 // Return longitude of moon (in degrees) at moment tee.
 // Adapted from "Astronomical Algorithms" by Jean Meeus,
 // Willmann_Bell, Inc., 2nd ed., 1998.
-
 function lunar_longitude(tee) {
   var c = julian_centuries(tee),
     cap_L_prime = mean_lunar_longitude(c),
@@ -221,7 +211,7 @@ function lunar_latitude(tee) {
         302, -283, -229, 223, 223, -220, -220, -185, 181,
         -177, 176, 166, -164, 132, -119, 115, 107],
       beta = ((1/1000000) *
-              sigma([sine_coefficients, 
+              sigma([sine_coefficients,
                      args_lunar_elongation,
                      args_solar_anomaly,
                      args_lunar_anomaly,
@@ -257,7 +247,7 @@ function lunar_distance(tee) {
       cap_M = solar_anomaly(c),
       cap_M_prime = lunar_anomaly(c),
       cap_F = moon_node(c),
-      cap_E = poly(c, [1, -0.002516, -0.0000074])
+      cap_E = poly(c, [1, -0.002516, -0.0000074]),
       args_lunar_elongation = [
         0, 2, 2, 0, 0, 0, 2, 2, 2, 2, 0, 1, 0, 2, 0, 0, 4, 0, 4, 2, 2, 1,
         1, 2, 2, 4, 2, 0, 2, 2, 1, 2, 0, 0, 2, 2, 2, 4, 0, 3, 2, 4, 0, 2,
@@ -291,7 +281,7 @@ function lunar_distance(tee) {
                            args_moon_node],
                           function(v, w, x, y, z) {
                             return (v *
-                                    Math.pow(cap_E, Math.abs(x)) * 
+                                    Math.pow(cap_E, Math.abs(x)) *
                                     cos_degrees((w * cap_D) +
                                                    (x * cap_M) +
                                                    (y * cap_M_prime) +
@@ -374,7 +364,7 @@ function nth_new_moon(n) {
                         function(v, w, x, y, z) {
                           return (v *
                                   Math.pow(cap_E, w) *
-                                  sin_degrees((x * solar_anomaly) + 
+                                  sin_degrees((x * solar_anomaly) +
                                               (y * lunar_anomaly) +
                                               (z * moon_argument)));})),
     add_const = [251.88, 251.83, 349.42, 84.66,
@@ -395,7 +385,7 @@ function nth_new_moon(n) {
              sin_degrees(poly(c, [299.77, 132.8475848,
                                       -0.009173]))),
     additional = sigma([add_const, add_coeff, add_factor],
-                       function(i, j, l) {return l * sin_degrees(i + j * k)});
+                       function(i, j, l) {return l * sin_degrees(i + j * k);});
 
     return universal_from_dynamical(approx + correction + extra + additional);
 }

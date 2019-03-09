@@ -28,13 +28,13 @@ function standard_year(date) {
   return date[0];
 }
 
-var SUNDAY = 0,
-  MONDAY = 1,
-  TUESDAY = 2,
-  WEDNESDAY = 3,
-  THURSDAY = 4,
-  FRIDAY = 5,
-  SATURDAY = 6;
+var SUNDAY    = 0,
+    MONDAY    = 1,
+    TUESDAY   = 2,
+    WEDNESDAY = 3,
+    THURSDAY  = 4,
+    FRIDAY    = 5,
+    SATURDAY  = 6;
 
 
 // Return day of the week from a fixed date 'date'.
@@ -68,8 +68,8 @@ function seconds(clock) {
 // Return time of day from clock time 'hms'.
 function time_from_clock(hms) {
   var h = hour(hms),
-    m = minute(hms),
-    s = seconds(hms);
+      m = minute(hms),
+      s = seconds(hms);
   return (1 / 24 * (h + ((m + (s / 60)) / 60)));
 }
 aa.time_from_clock = time_from_clock;
@@ -90,7 +90,7 @@ aa.time_from_moment = time_from_moment;
 // Return clock time hour:minute:second from moment 'tee'.
 function clock_from_moment(tee) {
   var time = time_from_moment(tee),
-    hour = ifloor(time * 24),
+      hour = ifloor(time * 24),
     minute = ifloor(mod(time * 24 * 60, 60)),
     second = mod(time * 24 * 60 * 60, 60);
   return time_of_day(hour, minute, second);
@@ -105,7 +105,6 @@ function days_from_hours(x) {
 // days (and fractions) of Julian 2000 at 12 UTC
 // (since EPOCH = January 1, 1970, 00:00:00 UTC)
 var JD_EPOCH = rd(-1721424.5);
-
 aa.JD_EPOCH = JD_EPOCH;
 
 // Return the moment corresponding to the Julian day number 'jd'.
@@ -140,18 +139,18 @@ function gregorian_date(year, month, day) {
 aa.gregorian_date = gregorian_date;
 
 var GREGORIAN_EPOCH = rd(1),
-  JANUARY = 1,
-  FEBRUARY = 2,
-  MARCH = 3,
-  APRIL = 4,
-  MAY = 5,
-  JUNE = 6,
-  JULY = 7,
-  AUGUST = 8,
-  SEPTEMBER = 9,
-  OCTOBER = 10,
-  NOVEMBER = 11,
-  DECEMBER = 12;
+    JANUARY   = 1,
+    FEBRUARY  = 2,
+    MARCH     = 3,
+    APRIL     = 4,
+    MAY       = 5,
+    JUNE      = 6,
+    JULY      = 7,
+    AUGUST    = 8,
+    SEPTEMBER = 9,
+    OCTOBER   = 10,
+    NOVEMBER  = 11,
+    DECEMBER  = 12;
 
 // Return True if Gregorian year 'g_year' is leap.
 function is_gregorian_leap_year(g_year) {
@@ -164,10 +163,10 @@ function fixed_from_gregorian(g_date) {
   var month = standard_month(g_date),
     day = standard_day(g_date),
     year = standard_year(g_date);
-  return ((GREGORIAN_EPOCH - 1) + 
-    (365 * (year - 1)) + 
+  return ((GREGORIAN_EPOCH - 1) +
+    (365 * (year - 1)) +
     quotient(year - 1, 4) -
-    quotient(year - 1, 100) + 
+    quotient(year - 1, 100) +
     quotient(year - 1, 400) +
     quotient((367 * month) - 362, 12) +
     (month <= 2 ? 0 : (is_gregorian_leap_year(year) ? -1 : -2)) + day);

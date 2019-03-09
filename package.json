@@ -10,7 +10,7 @@
   "devDependencies": {
     "smash": "~0.0.8",
     "uglify-js": "",
-    "vows": "0.7.x"
+    "vows": ""
     },
     "scripts"     : {"test": "./node_modules/vows/bin/vows `find . -name \"*-test.js\" \\! -path \"./node_modules/*\"`"}
   }
